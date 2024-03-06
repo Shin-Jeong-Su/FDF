@@ -6,39 +6,30 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:40:14 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/05 15:16:30 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/06 19:22:38 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "fdf.h"
 #include <stdio.h>
 
-int	init(int ac, char **av);
 int main(int argc, char **argv)
 {
-	if (init(argc, argv))
-	{
-		//error
+	t_dq			dq;
+	t_vars			vars;
+	t_img_info		img_info;
+
+	if (init(argc, argv, &dq))
 		return (1);
-	}
+	prt_img(&vars, &img_info);
+	
 }
 
-int init(int ac, char **av)
+void prtimg(t_vars *vars,t_img_info *img_info)
 {
-	int	fd;
-	char	*line;
+	vars->mlx = mlx_init();
+	vars->win = mlx_new_window(vars->mlx,width,height,"FDF");
+	img_info->img = mlx_new_image(vars->mlx,width,height);
+	mlx_get_data_addr(img_info->img, &(img_info->bits_per_pixel), &(img_info->line_length), &(img_info->endian));
 
-	if (ac != 2)
-		return (1);
-	fd = open(av[1],O_RDONLY);
-	if (!fd)
-		return (1);
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (line == 0)
-			break;
-		printf("%s",line);
-	}
-	return (0);
 }

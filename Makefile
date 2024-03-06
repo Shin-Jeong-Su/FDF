@@ -5,7 +5,10 @@ DBG = -g -fsanitize=address
 DEPFLAGS = -MMD -MP
 RM = rm -rf
 
-SRC = main
+SRC = cf
+# main\
+		# my_deque\
+		# my_deque2
 SRCS = $(addsuffix .c,$(SRC))
 OBJS = $(addsuffix .o,$(SRC))
 DEPS = $(addsuffix .d,$(SRC))

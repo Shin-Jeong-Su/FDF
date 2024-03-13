@@ -6,55 +6,89 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 19:15:40 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/06 19:22:40 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/13 21:00:05 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	free_tab(char **tab)
+static int	word_cnt(char *s, char c)
 {
-	int i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
+	int	i;
+	int	cnt;
+
+	cnt = 0;
+	i = 0;
+	if (s[i] && s[i] != c)
+		cnt++;
+	while (s[i])
+	{
+		if (s[i] == c && (s[i + 1] != c && s[i + 1] != 0))
+			cnt++;
+		i++;
+	}
+	return (cnt);
 }
 
 static int	is_fdf_file(char *file)
 {
-	char **splited;
+	char	*here;
 
-	if (!ft_strnstr(file, ".", ft_strlen(file)))
-		return (0);
-	splited = ft_split(file, '.');
-	if (ft_strncmp(splited[1], "fdf", 4) || splited[2] != 0 )
-	{
-		free_tab(splited);
-		return (0);
-	}
-	free_tab(splited);
-	return (1);
+	here = ft_strrchr(file, '.');
+	if (!here)
+		return (FALSE);
+	if (ft_strncmp(here, ".fdf", 5))
+		return (FALSE);
+	return (TRUE);
 }
 
-int init(int ac, char **av, t_dq *dq)
+static int	has_all_same_len(t_dq *dq)
 {
-	int	fd;
-	size_t	size;
-	char *line;
+	t_node	*start;
+	int		cnt;
 
-	if (ac != 2 || !is_fdf_file(av[1]))
-		return (1);
-	fd = open(av[1],O_RDONLY);
-	if (!fd)
-		return (1);
-	init_dq(dq);
-	while (1)
+	start = dq->head;
+	cnt = word_cnt(start->data, ' ');
+	start = start->next;
+	while (start)
+	{
+		if (cnt != word_cnt(start->data, ' '))
+		{
+			clear_dq(dq);
+			return (FALSE);
+		}
+		start = start->next;
+	}
+	return (TRUE);
+}
+
+static int	get_contents(char *file, t_dq *dq)
+{
+	int		fd;
+	char	*line;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (EXIT_FAILURE);
+	while (TRUE)
 	{
 		line = get_next_line(fd);
 		if (line == 0)
-			break;
+			break ;
 		push_back_dq(dq, line);
 	}
-	prt_all_dq(dq);
-	return (0);
+	close(fd);
+	return (EXIT_SUCCESS);
+}
+
+int	init(int ac, char **av, t_dq *dq)
+{
+	if (ac != 2 || is_fdf_file(av[1]) == FALSE)
+		return (EXIT_FAILURE);
+	init_dq(dq);
+	if (get_contents(av[1], dq))
+		return (EXIT_FAILURE);
+	if (!has_all_same_len(dq))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

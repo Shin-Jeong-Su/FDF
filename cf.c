@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 20:16:41 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/06 19:47:28 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/07 14:21:38 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,10 @@ typedef struct s_vars{
 	void *win;
 }		t_vars;
 
-//////////////////////////////////////////
-
 void my_mlx_pixel_put(t_data *data, int x,int y,int color);
 int	key_hook(int keycode ,t_vars *vars);
 int	exit_hook();
 int	prtimage();
-///////////////////////////////////////////
 
 int main(){
 	prtimage();

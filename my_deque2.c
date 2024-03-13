@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 12:28:30 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/06 16:28:50 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/08 19:24:14 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	pop_front_dq(t_dq *dq)
 		return ;
 	tmp = dq->head;
 	dq->head = dq->head->next;
+	free(tmp->data);
 	free(tmp);
 	if (dq->head == NULL)
 		dq->tail = NULL;
@@ -36,6 +37,7 @@ void	pop_back_dq(t_dq *dq)
 		return ;
 	tmp = dq->tail;
 	dq->tail = dq->tail->prev;
+	free(tmp->data);
 	free(tmp);
 	if (dq->tail == NULL)
 		dq->head = NULL;

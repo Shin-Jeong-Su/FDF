@@ -9,7 +9,7 @@
 			"request": "launch",
 			"name": "Debug",
 			"program": "${workspaceFolder}/fdf",
-			"args": ["elem-col.fdf"],
+			"args": ["./test_maps/42.fdf"],
 			"cwd": "${workspaceFolder}"
 		}
 	]

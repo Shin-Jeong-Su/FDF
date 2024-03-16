@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:43:43 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/13 20:50:53 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/16 19:34:29 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	get_info_map(t_dq *dq, t_map_info *map)
 		(map->n_col)++;
 	free_tab(str_tab);
 	map->offset = 10;
-	while (map->n_row * map->offset < HEIGHT \
-	&& map->n_col * map->offset < WIDTH)
+	while (map->n_row * map->offset < HEIGHT / 2 \
+	&& map->n_col * map->offset < WIDTH / 2)
 		map->offset++;
 	return (EXIT_SUCCESS);
 }

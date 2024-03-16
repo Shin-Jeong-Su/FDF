@@ -10,6 +10,7 @@ SRC = main\
 		map2\
 		init\
 		img\
+		draw\
 		malloc\
 		my_deque\
 		my_deque2

@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:41:32 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/13 20:56:34 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/16 19:00:39 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,21 @@ typedef struct s_z
 	int		k;
 }	t_z;
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+	int	color;
+}	t_point;
+
+typedef struct s_params
+{
+	int	dy;
+	int	dx;
+	int	increment_x;
+	int	increment_y;
+	int discriminant;
+}	t_params;
 //init.c
 int		init(int ac, char **av, t_dq *dq);
 //malloc.c
@@ -82,6 +97,8 @@ int		parse_map(t_dq *dq, t_map_info *map);
 int		has_color_value(t_dq *dq);
 int		cvrt_str_to_color(char *s);
 //img.c
-void	prt_img(t_mlx_info *mlx, t_img_info *img, t_map_info *map);
+int		display(t_mlx_info *mlx, t_img_info *img, t_map_info *map);
+//draw.c
+int		draw(t_img_info *img,t_map_info *map);
 
 #endif

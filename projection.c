@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtoul.c                                       :+:      :+:    :+:   */
+/*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/13 15:19:20 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/13 15:21:17 by jeshin           ###   ########.fr       */
+/*   Created: 2024/03/14 12:16:26 by jeshin            #+#    #+#             */
+/*   Updated: 2024/03/14 14:05:40 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-unsigned long	ft_strtoul(const char *str, char **endptr, int base)
+int	rotate_x()
 {
-	
+
+}
+int	rotate_y()
+{
+
+}
+int	rotate_z()
+{
+
+}
+int	projection()
+{
+
 }

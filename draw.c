@@ -6,18 +6,30 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 20:25:06 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/16 19:55:37 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/18 15:47:36 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+void	draw_line_with_increment_y(t_img_info *img, t_point *p1, t_point *p2, t_params *params);
+
+int	create_argb(int a, int r, int g, int b)
+{
+	int color;
+
+	color = (a << 24) + (r << 16) + (g << 8) + b;
+	return (color);
+}
 
 void	my_mlx_pixel_put(t_img_info *img, int x, int y, int color)
 {
 	char	*dst;
 
+	// printf("%d\t",x);
+	// printf("%d\n",y);
 	dst = img->addr + (y * img->line_length) + (x * img->bits_per_pixel / 8);
-	*(unsigned int *)dst = color;
+	*(unsigned int *)dst = 0xFFFFFF;
+	color = 0xFFFFFF;
 }
 
 t_params	init_params(t_point *p1, t_point *p2)
@@ -45,13 +57,17 @@ t_point	init_point(t_map_info *map, int x, int y)
 {
 	t_point		p;
 	int			z;
+	int			ofs;
 
-	z = map->crd[y][x];
-	x +=map->offset;
-	y +=map->offset;
-	p.x = x*cos(M_PI/6) - y*cos(M_PI/6);
-	p.y = x*sin(M_PI/6) + y*sin(M_PI/6) - z;
-	p.color = 0xFFFFFF;
+	ofs = map->offset;
+	z = map->crd[y][x] * ofs;
+	x = x*ofs;
+	y = y*ofs;
+	// p.x = x;
+	// p.y = y;
+	p.x = x*cos(M_PI/6) - y*cos(M_PI/6) + WIDTH/2;
+	p.y = x*sin(M_PI/6) + y*sin(M_PI/6) - z + HEIGHT/2;
+	p.color = create_argb(0,255,255,255);
 	// p.color = map->color[y][x];
 	return (p);
 }
@@ -70,6 +86,8 @@ void	draw_line_with_increment_x(t_img_info *img, t_point *p1, t_point *p2, t_par
 		params->discriminant += params->dy * 2;
 		my_mlx_pixel_put(img, p1->x, p1->y, p1->color);
 	}
+	// if (p1->y < p2->y)
+	// 	draw_line_with_increment_y(img,p1,p2,params);
 }
 
 void	draw_line_with_increment_y(t_img_info *img, t_point *p1, t_point *p2, t_params *params)
@@ -86,6 +104,8 @@ void	draw_line_with_increment_y(t_img_info *img, t_point *p1, t_point *p2, t_par
 		params->discriminant += params->dx * 2;
 		my_mlx_pixel_put(img, p1->x, p1->y, p1->color);
 	}
+	// if (p1->x < p2->x)
+	// 	draw_line_with_increment_x(img,p1,p2,params);
 }
 
 int	set_x(t_img_info *img, t_map_info *map, int x, int y)
@@ -95,7 +115,15 @@ int	set_x(t_img_info *img, t_map_info *map, int x, int y)
 	t_point		p2;
 
 	p1 = init_point(map, x, y);
+	// p1.x =WIDTH/2 + x*map->offset;
+	// p1.y =HEIGHT/2 + y*map->offset;
+	// p1.color = create_argb(0,255,255,255);
+
 	p2 = init_point(map, x + 1, y);
+	// p2.x =WIDTH/2 + (x+1)* map->offset;
+	// p2.y =HEIGHT/2 + y*map->offset;
+	// p2.color = create_argb(0,255,255,255);
+
 	params = init_params(&p1, &p2);
 	my_mlx_pixel_put(img, p1.x, p1.y, p1.color);
 	if (params.dy > params.dx)
@@ -111,7 +139,15 @@ int	set_y(t_img_info *img, t_map_info *map, int x, int y)
 	t_point		p2;
 
 	p1 = init_point(map, x, y);
+	// p1.x =WIDTH/2 + x*map->offset;
+	// p1.y =HEIGHT/2 + y*map->offset;
+	// p1.color = create_argb(0,255,255,255);
+
 	p2 = init_point(map, x, y + 1);
+	// p2.x =WIDTH/2 + x*map->offset ;
+	// p2.y =HEIGHT/2 + (y+1) * map->offset;
+	// p2.color = create_argb(0,255,255,255);
+
 	params = init_params(&p1, &p2);
 	my_mlx_pixel_put(img, p1.x, p1.y, p1.color);
 	if (params.dy > params.dx)
@@ -127,14 +163,14 @@ int	draw(t_img_info *img, t_map_info *map)
 	int	x;
 
 	y = -1;
-	while (++y < map->n_row - 2)
+	while (++y < map->n_row)
 	{
 		x = -1;
-		while (++x < map->n_col - 2)
+		while (++x < map->n_col)
 		{
-			if (x < map->n_col - 2)
+			if (x < map->n_col - 1)
 				set_x(img, map, x, y);
-			if (y < map->n_row - 2)
+			if (y < map->n_row - 1)
 				set_y(img, map, x, y);
 		}
 	}

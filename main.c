@@ -6,13 +6,13 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:40:14 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/18 12:15:56 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/19 16:31:11 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fdf.h"
+#include "fdf.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_dq			dq;
 	t_map_info		map;
@@ -27,6 +27,5 @@ int main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	// free_all();
 	// free(map.crd);
-	
 	return (EXIT_SUCCESS);
 }

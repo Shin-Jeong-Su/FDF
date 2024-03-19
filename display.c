@@ -6,12 +6,27 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:33:04 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/16 18:27:43 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/19 16:31:27 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+int	create_argb(int a, int r, int g, int b)
+{
+	int	color;
+
+	color = (a << 24) + (r << 16) + (g << 8) + b;
+	return (color);
+}
+
+void	my_mlx_pixel_put(t_img_info *img, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = img->addr + (y * img->line_length) + (x * img->bits_per_pixel / 8);
+	*(unsigned int *)dst = color;
+}
 
 int	display(t_mlx_info *mlx, t_img_info *img, t_map_info *map)
 {

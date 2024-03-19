@@ -6,10 +6,11 @@ DEPFLAGS = -MMD -MP
 RM = rm -rf
 
 SRC = main\
-		map\
-		map2\
 		init\
-		img\
+		parse_map\
+		parse_map2\
+		display\
+		init_draw\
 		draw\
 		malloc\
 		my_deque\

@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:47:06 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/13 20:58:15 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/19 16:13:23 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,22 @@ static void	get_rgb(t_clr *clr)
 {
 	if (clr->i < 2)
 	{
-		clr->r *= 10;
-		clr->r += (clr->set)[clr->j] - '0';
+		clr->r *= 16;
+		clr->r += clr->j;
 	}
 	else if (clr->i < 4)
 	{
-		clr->g *= 10;
-		clr->g += (clr->set)[clr->j] - '0';
+		clr->g *= 16;
+		clr->g += clr->j;
 	}
 	else if (clr->i < 6)
 	{
-		clr->b *= 10;
-		clr->b += (clr->set)[clr->j] - '0';
+		clr->b *= 16;
+		clr->b += clr->j;
 	}
 }
 
-int	cvrt_str_to_color(char *s)
+unsigned int	cvrt_str_to_color(char *s)
 {
 	char	*start;
 	t_clr	clr;
@@ -58,7 +58,7 @@ int	cvrt_str_to_color(char *s)
 	start = ft_strnstr(s, "0x", ft_strlen(s));
 	if (start == 0)
 		return (EXIT_SUCCESS);
-	start++;
+	start += 2;
 	clr.i = -1;
 	clr.r = 0;
 	clr.g = 0;

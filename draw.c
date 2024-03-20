@@ -6,11 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 20:25:06 by jeshin            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/03/19 16:42:25 by jeshin           ###   ########.fr       */
-=======
-/*   Updated: 2024/03/19 16:45:03 by jeshin           ###   ########.fr       */
->>>>>>> Fix draw. Need to make isometric projection
+/*   Updated: 2024/03/20 11:49:01 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

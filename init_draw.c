@@ -6,13 +6,10 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:42:30 by jeshin            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/03/19 16:41:00 by jeshin           ###   ########.fr       */
-=======
-/*   Updated: 2024/03/19 16:49:43 by jeshin           ###   ########.fr       */
->>>>>>> Fix draw. Need to make isometric projection
+/*   Updated: 2024/03/20 17:43:38 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "fdf.h"
 
@@ -48,14 +45,10 @@ t_point	init_point(t_map_info *map, int x, int y)
 		p.color = create_argb(0,255,255,255);
 	else
 		p.color = map->color[y][x];
-<<<<<<< HEAD
-	z = map->crd[y][x] * map->offset / 10;
-=======
-	z = map->crd[y][x] * map->offset / 5;
->>>>>>> Fix draw. Need to make isometric projection
+	z = map->crd[y][x] * map->offset;
 	x = x*map->offset;
 	y = y*map->offset;
-	p.x = x*cos(M_PI/6) - y*cos(M_PI/6) + WIDTH / 2;
-	p.y = x*sin(M_PI/6) + y*sin(M_PI/6) - z + HEIGHT / 2;
+	p.x = x*cos(M_PI/6) - y*cos(M_PI/6) + WIDTH/2 - (map->n_col/2 *cos(M_PI/6) - map->n_row/2*cos(M_PI/6));
+	p.y = x*sin(M_PI/6) + y*sin(M_PI/6) - z + HEIGHT/2 - (map->n_col/2*sin(M_PI/6) + map->n_row/2*sin(M_PI/6) - avg_z);
 	return (p);
 }

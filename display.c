@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img.c                                              :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:33:04 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/19 16:31:27 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/20 17:38:52 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,22 @@ void	my_mlx_pixel_put(t_img_info *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+int	hook_esc_to_close(int keycode ,t_mlx_info *mlx)
+{
+	if (keycode == KEY_ESC)
+	{
+		mlx_destroy_window(mlx->mlx, mlx->win);
+		exit(EXIT_SUCCESS);
+	}
+	return (EXIT_SUCCESS);
+}
+
+int	hook_click_to_close(t_mlx_info *mlx)
+{
+	mlx_destroy_window(mlx->mlx, mlx->win);
+	exit(EXIT_SUCCESS);
+}
+
 int	display(t_mlx_info *mlx, t_img_info *img, t_map_info *map)
 {
 	mlx->mlx = mlx_init();
@@ -45,7 +61,11 @@ int	display(t_mlx_info *mlx, t_img_info *img, t_map_info *map)
 		return (EXIT_FAILURE);
 	if (draw(img, map))
 		return (EXIT_FAILURE);
-	mlx_put_image_to_window(mlx->mlx, mlx->win, img->img, 0, 0);
+	// mlx_put_image_to_window(mlx->mlx, mlx->win, img->img, WIDTH/2 - (map->n_col * map->offset), HEIGHT/2 - (map->n_row * map->offset));
+	// mlx_put_image_to_window(mlx->mlx, mlx->win, img->img, WIDTH/2, HEIGHT/2);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, img->img,0, 0);
+	mlx_hook(mlx->win,ON_DESTROY,NO_EVENT,hook_click_to_close, mlx);
+	mlx_hook(mlx->win,ON_KEYDOWN,KEY_PRESS,hook_esc_to_close, mlx);
 	mlx_loop(mlx->mlx);
 	return (EXIT_SUCCESS);
 }

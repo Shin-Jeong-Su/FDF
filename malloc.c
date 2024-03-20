@@ -6,11 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:36:40 by jeshin            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/03/19 15:32:41 by jeshin           ###   ########.fr       */
-=======
-/*   Updated: 2024/03/19 16:44:53 by jeshin           ###   ########.fr       */
->>>>>>> Fix draw. Need to make isometric projection
+/*   Updated: 2024/03/20 11:50:41 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,28 +73,17 @@ int	calloc_map_color(t_dq *dq, t_map_info *map)
 	i = -1;
 	while (++i < map->n_row)
 	{
-<<<<<<< HEAD
 		 map->color[i] = (unsigned int *)malloc(sizeof(unsigned int) * map->n_col);
 		 if (map->color[i] == 0)
 		 {
-=======
-		map->color[i] = (unsigned int *)malloc(sizeof(int) * map->n_col);
-		if (map->color[i] == 0)
-		{
->>>>>>> Fix draw. Need to make isometric projection
 			j = -1;
 			while (++j < i - 1)
 				free(map->color[j]);
 			clear_dq(dq);
 			free(map->color);
 			return (1);
-<<<<<<< HEAD
 		 }
 		 ft_bzero(map->color[i], map->n_col * sizeof(unsigned int));
-=======
-		}
-		ft_bzero(map->color[i], map->n_col * sizeof(unsigned int));
->>>>>>> Fix draw. Need to make isometric projection
 	}
 	return (EXIT_SUCCESS);
 }

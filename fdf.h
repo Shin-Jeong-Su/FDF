@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:41:32 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/19 16:36:29 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/20 17:41:54 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,24 @@
 # include "my_deque.h"
 # include <stdio.h>
 
-# define WIDTH 1400
-# define HEIGHT 1050
+# define WIDTH 1080
+# define HEIGHT 1200
+
+# define KEY_ESC 53
+int avg_z;
+
+typedef enum e_key_mask
+{
+	NO_EVENT = 0L,
+	KEY_PRESS = 1L<<0
+
+}	t_key_mask;
+
+typedef enum e_event
+{
+	ON_KEYDOWN = 2,
+	ON_DESTROY = 17,
+}	t_event;
 
 typedef struct s_mlx_info
 {

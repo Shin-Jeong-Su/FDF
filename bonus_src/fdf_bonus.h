@@ -6,12 +6,12 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:41:32 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/26 17:03:24 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/26 17:07:45 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"

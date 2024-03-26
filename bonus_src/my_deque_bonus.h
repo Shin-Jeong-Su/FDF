@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_deque.h                                         :+:      :+:    :+:   */
+/*   my_deque_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:02:27 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/26 13:18:07 by jeshin           ###   ########.fr       */
+/*   Created: 2024/03/26 17:07:05 by jeshin            #+#    #+#             */
+/*   Updated: 2024/03/26 17:07:35 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MY_DEQUE_H
-# define MY_DEQUE_H
+#ifndef MY_DEQUE_BONUS_H
+# define MY_DEQUE_BONUS_H
 
 # define TRUE 1
 # define FALSE 0

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotation.c                                         :+:      :+:    :+:   */
+/*   rotation_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:05:40 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/26 12:28:02 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/26 17:03:44 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
-void	pitch(t_point *p, int deg)
+static void	pitch(t_point *p, int deg)
 {
 	int	prv_y;
 	int	prv_z;
@@ -23,7 +23,7 @@ void	pitch(t_point *p, int deg)
 	p->z = prv_y * sin(M_PI / 180 * deg) + prv_z * cos(M_PI / 180 * deg);
 }
 
-void	yaw(t_point *p, int deg)
+static void	yaw(t_point *p, int deg)
 {
 	int	prv_x;
 	int	prv_z;
@@ -34,7 +34,7 @@ void	yaw(t_point *p, int deg)
 	p->z = -prv_x * sin(M_PI / 180 * deg) + prv_z * cos(M_PI / 180 * deg);
 }
 
-void	roll(t_point *p, int deg)
+static void	roll(t_point *p, int deg)
 {
 	int	prv_x;
 	int	prv_y;

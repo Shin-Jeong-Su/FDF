@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_bonus2.c                                     :+:      :+:    :+:   */
+/*   event2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:48:32 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/26 12:50:09 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/26 15:55:10 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 static void	handle_rotate_deg(t_fdf_info *fdf, int alpha, int beta, int gamma)
 {

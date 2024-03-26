@@ -6,11 +6,11 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:32:43 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/26 12:51:51 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/26 15:55:12 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 int	hook_zoom(int keycode, t_fdf_info *fdf)
 {

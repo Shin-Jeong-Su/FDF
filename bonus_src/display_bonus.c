@@ -6,11 +6,11 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:13:54 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/26 12:50:58 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/26 16:41:40 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 static int	click_on_close(t_fdf_info *fdf)
 {

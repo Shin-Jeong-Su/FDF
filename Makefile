@@ -21,20 +21,20 @@ SRCS = $(addprefix ./mandatory_src/, $(addsuffix .c,$(SRC)))
 OBJS = $(addprefix ./mandatory_src/, $(addsuffix .o,$(SRC)))
 DEPS = $(addprefix ./mandatory_src/, $(addsuffix .d,$(SRC)))
 
-SRC_BONUS = main\
-		init_fdf\
-		parse_map\
-		parse_map_utils\
+SRC_BONUS = main_bonus\
+		init_fdf_bonus\
+		parse_map_bonus\
+		parse_map_utils_bonus\
 		display_bonus\
-		display_utils\
-		init_point\
-		draw\
+		display_utils_bonus\
+		init_point_bonus\
+		draw_bonus\
 		event_bonus\
-		event_bonus2\
-		rotation\
-		malloc\
-		my_deque\
-		my_deque2
+		event2_bonus\
+		rotation_bonus\
+		malloc_bonus\
+		my_deque_bonus\
+		my_deque2_bonus
 SRCS_BONUS = $(addprefix ./bonus_src/, $(addsuffix .c,$(SRC_BONUS)))
 OBJS_BONUS = $(addprefix ./bonus_src/, $(addsuffix .o,$(SRC_BONUS)))
 DEPS_BONUS = $(addprefix ./bonus_src/, $(addsuffix .d,$(SRC_BONUS)))

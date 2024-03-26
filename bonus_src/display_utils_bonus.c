@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   display_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 18:40:14 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/26 12:25:56 by jeshin           ###   ########.fr       */
+/*   Created: 2024/03/22 12:10:36 by jeshin            #+#    #+#             */
+/*   Updated: 2024/03/26 15:55:15 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
-int	main(int argc, char **argv)
+int	create_argb(int a, int r, int g, int b)
 {
-	t_dq			dq;
-	t_map_info		map;
-	t_mlx_info		mlx;
-	t_img_info		img;
+	int	color;
 
-	if (init_fdf(argc, argv, &dq))
-		return (EXIT_FAILURE);
-	if (parse_map(&dq, &map))
-		return (EXIT_FAILURE);
-	if (display(&mlx, &img, &map))
-		exit (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	color = (a << 24) + (r << 16) + (g << 8) + b;
+	return (color);
+}
+
+void	my_mlx_pixel_put(t_img_info *img, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = img->addr + (y * img->line_length) + (x * img->bits_per_pixel / 8);
+	*(unsigned int *)dst = color;
 }

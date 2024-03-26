@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:43:43 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/26 11:38:23 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/26 12:22:10 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,18 @@ static int	get_color(t_dq *dq, t_map_info *map)
 	return (EXIT_SUCCESS);
 }
 
+static void	init_map(t_map_info *map)
+{
+	map->central_x = (map->n_col / 2 * cos(M_PI / 6) * map->offset) - \
+	(map->n_row / 2 * cos(M_PI / 6) * map->offset);
+	map->central_y = (map->n_col / 2 * sin(M_PI / 6) * map->offset) + \
+	(map->n_row / 2 * sin(M_PI / 6) * map->offset);
+	map->alpha = 0;
+	map->beta = 0;
+	map->gamma = 0;
+	map->ortho_flg = 0;
+}
+
 int	parse_map(t_dq *dq, t_map_info *map)
 {
 	map->has_color = has_color_value(dq);
@@ -105,14 +117,7 @@ int	parse_map(t_dq *dq, t_map_info *map)
 		clear_dq(dq);
 		return (EXIT_FAILURE);
 	}
-	map->central_x = (map->n_col / 2 * cos(M_PI / 6) * map->offset) - \
-	(map->n_row / 2 * cos(M_PI / 6) * map->offset);
-	map->central_y = (map->n_col / 2 * sin(M_PI / 6) * map->offset) + \
-	(map->n_row / 2 * sin(M_PI / 6) * map->offset);
-	map->alpha =0;
-	map->beta = 0;
-	map->gamma = 0;
-	map->ortho_flg = 0;
+	init_map(map);
 	clear_dq(dq);
 	return (EXIT_SUCCESS);
 }

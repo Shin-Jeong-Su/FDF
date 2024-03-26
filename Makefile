@@ -1,7 +1,8 @@
 NAME = fdf
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 DBG = -g -fsanitize=address
+IFLAGS = -I include
 DEPFLAGS = -MMD -MP
 RM = rm -rf
 
@@ -16,9 +17,9 @@ SRC = main\
 		malloc\
 		my_deque\
 		my_deque2
-SRCS = $(addsuffix .c,$(SRC))
-OBJS = $(addsuffix .o,$(SRC))
-DEPS = $(addsuffix .d,$(SRC))
+SRCS = $(addprefix ./mandatory_src/, $(addsuffix .c,$(SRC)))
+OBJS = $(addprefix ./mandatory_src/, $(addsuffix .o,$(SRC)))
+DEPS = $(addprefix ./mandatory_src/, $(addsuffix .d,$(SRC)))
 
 SRC_BONUS = main\
 		init_fdf\
@@ -29,13 +30,14 @@ SRC_BONUS = main\
 		init_point\
 		draw\
 		event_bonus\
+		event_bonus2\
 		rotation\
 		malloc\
 		my_deque\
 		my_deque2
-SRCS_BONUS = $(addsuffix .c,$(SRC_BONUS))
-OBJS_BONUS = $(addsuffix .o,$(SRC_BONUS))
-DEPS_BONUS = $(addsuffix .d,$(SRC_BONUS))
+SRCS_BONUS = $(addprefix ./bonus_src/, $(addsuffix .c,$(SRC_BONUS)))
+OBJS_BONUS = $(addprefix ./bonus_src/, $(addsuffix .o,$(SRC_BONUS)))
+DEPS_BONUS = $(addprefix ./bonus_src/, $(addsuffix .d,$(SRC_BONUS)))
 LIB = ./libft/libft.a
 
 all : mandatory
@@ -60,6 +62,7 @@ bonus : $(OBJS_BONUS) $(LIB)
 
 d : $(LIB)
 	@$(CC) $(DBG) -Lmlx -lmlx -framework OpenGL -framework AppKit $^ $(SRCS) -o $(NAME)
+
 bonus_d : $(LIB)
 	@$(CC) $(DBG) -Lmlx -lmlx -framework OpenGL -framework AppKit $^ $(SRCS_BONUS) -o $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:02:27 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/06 16:32:32 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/26 13:18:07 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define FALSE 0
 
 # include <stdlib.h>
-# include "./libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_node
 {

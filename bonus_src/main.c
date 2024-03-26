@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:40:14 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/22 18:42:13 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/26 12:25:56 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	main(int argc, char **argv)
 	if (parse_map(&dq, &map))
 		return (EXIT_FAILURE);
 	if (display(&mlx, &img, &map))
-		return (EXIT_FAILURE);
+		exit (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

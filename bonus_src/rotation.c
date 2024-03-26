@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:05:40 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/26 11:37:50 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/26 12:28:02 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	roll(t_point *p, int deg)
 	p->y = prv_x * sin(M_PI / 180 * deg) + prv_y * cos(M_PI / 180 * deg);
 }
 
-int	rotate(t_point *p, t_map_info *map)
+void	rotate(t_point *p, t_map_info *map)
 {
 	if (map->alpha)
 		pitch(p, map->alpha);
@@ -53,5 +53,4 @@ int	rotate(t_point *p, t_map_info *map)
 		yaw(p, map->beta);
 	if (map->gamma)
 		roll(p, map->gamma);
-	return (EXIT_SUCCESS);
 }

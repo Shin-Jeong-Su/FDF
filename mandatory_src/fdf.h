@@ -6,18 +6,17 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:41:32 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/26 11:38:05 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/26 15:13:19 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "./mlx/mlx.h"
-# include "./libft/libft.h"
-# include <math.h>
+# include "../mlx/mlx.h"
+# include "../libft/libft.h"
 # include "my_deque.h"
-# include <stdio.h>
+# include <math.h>
 
 # define WIDTH 1200
 # define HEIGHT 1000
@@ -30,7 +29,8 @@ typedef enum e_key_code
 	LEFT_ARROW = 123,
 	RIGHT_ARROW = 124,
 	COMMAND = 259,
-	PLUS = 24, MINUS = 27,
+	PLUS = 24,
+	MINUS = 27,
 	ONE = 18,
 	TWO = 19,
 	THREE = 20,
@@ -103,7 +103,6 @@ typedef struct s_clr
 	char			*set;
 }	t_clr;
 
-
 typedef struct s_z
 {
 	t_node	*start;
@@ -153,8 +152,12 @@ t_point			init_point(t_map_info *map, int x, int y);
 //draw.c
 int				draw(t_img_info *img, t_map_info *map);
 //event_bonus.c
-int				click_on_close(t_fdf_info *fdf);
-int				key_event_hook(int keycode, t_fdf_info *fdf);
+int				hook_zoom(int keycode, t_fdf_info *fdf);
+int				hook_translate(int keycode, t_fdf_info *fdf);
+int				hook_rotate(int keycode, t_fdf_info *fdf);
+int				hook_return_to_original(t_fdf_info *fdf);
+//event_bonus2.c
+int				hook_ortho_project(t_fdf_info *fdf);
 //malloc.c
 void			free_tab(char **tab);
 int				free_all(char **tab, t_dq *dq);

@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   projection.c                                       :+:      :+:    :+:   */
+/*   display_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 12:16:26 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/14 14:05:40 by jeshin           ###   ########.fr       */
+/*   Created: 2024/03/22 12:10:36 by jeshin            #+#    #+#             */
+/*   Updated: 2024/03/22 13:49:58 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	rotate_x()
+int	create_argb(int a, int r, int g, int b)
 {
+	int	color;
 
+	color = (a << 24) + (r << 16) + (g << 8) + b;
+	return (color);
 }
-int	rotate_y()
-{
 
-}
-int	rotate_z()
+void	my_mlx_pixel_put(t_img_info *img, int x, int y, int color)
 {
+	char	*dst;
 
-}
-int	projection()
-{
-
+	dst = img->addr + (y * img->line_length) + (x * img->bits_per_pixel / 8);
+	*(unsigned int *)dst = color;
 }

@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 19:15:40 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/19 14:44:14 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/22 11:54:11 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	is_fdf_file(char *file)
 	return (TRUE);
 }
 
-static int	has_all_same_len(t_dq *dq)
+static int	has_dq_same_len_all(t_dq *dq)
 {
 	t_node	*start;
 	int		cnt;
@@ -62,7 +62,7 @@ static int	has_all_same_len(t_dq *dq)
 	return (TRUE);
 }
 
-static int	get_contents(char *file, t_dq *dq)
+static int	push_contents_to_dq(char *file, t_dq *dq)
 {
 	int		fd;
 	char	*line;
@@ -81,14 +81,14 @@ static int	get_contents(char *file, t_dq *dq)
 	return (EXIT_SUCCESS);
 }
 
-int	init(int ac, char **av, t_dq *dq)
+int	init_fdf(int ac, char **av, t_dq *dq)
 {
 	if (ac != 2 || is_fdf_file(av[1]) == FALSE)
 		return (EXIT_FAILURE);
 	init_dq(dq);
-	if (get_contents(av[1], dq))
+	if (push_contents_to_dq(av[1], dq))
 		return (EXIT_FAILURE);
-	if (!has_all_same_len(dq))
+	if (has_dq_same_len_all(dq) == FALSE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

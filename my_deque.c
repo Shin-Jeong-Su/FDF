@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:01:46 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/06 16:33:26 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/22 14:10:48 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	prt_all_dq(t_dq *dq)
 	here = dq->head;
 	while (here)
 	{
-		write(1,  here->data, ft_strlen(here->data));
+		write(1, here->data, ft_strlen(here->data));
 		here = here->next;
 	}
 }

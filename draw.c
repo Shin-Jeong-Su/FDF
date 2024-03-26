@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 20:25:06 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/20 11:49:01 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/22 18:32:48 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ static int	set_x(t_img_info *img, t_map_info *map, int x, int y)
 
 	p1 = init_point(map, x, y);
 	p2 = init_point(map, x + 1, y);
+	if (p1.x < 0 || p1.y < 0 || p2.x < 0 || p2.y < 0)
+		return (EXIT_SUCCESS);
+	if (p1.x > WIDTH - 1 || p1.y > HEIGHT - 1 || p2.x > WIDTH || p2.y > HEIGHT)
+		return (EXIT_SUCCESS);
+	if (map->offset < 0)
+		return (EXIT_SUCCESS);
 	params = init_params(&p1, &p2);
 	my_mlx_pixel_put(img, p1.x, p1.y, p1.color);
 	if (params.dy > params.dx)
@@ -69,6 +75,12 @@ static int	set_y(t_img_info *img, t_map_info *map, int x, int y)
 
 	p1 = init_point(map, x, y);
 	p2 = init_point(map, x, y + 1);
+	if (p1.x < 0 || p1.y < 0 || p2.x < 0 || p2.y < 0)
+		return (EXIT_SUCCESS);
+	if (p1.x > WIDTH - 1 || p1.y > HEIGHT - 1 || p2.x > WIDTH || p2.y > HEIGHT)
+		return (EXIT_SUCCESS);
+	if (map->offset < 0)
+		return (EXIT_SUCCESS);
 	params = init_params(&p1, &p2);
 	my_mlx_pixel_put(img, p1.x, p1.y, p1.color);
 	if (params.dy > params.dx)

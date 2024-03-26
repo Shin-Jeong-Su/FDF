@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:41:32 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/20 17:41:54 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/26 11:38:05 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,33 @@
 # include "my_deque.h"
 # include <stdio.h>
 
-# define WIDTH 1080
-# define HEIGHT 1200
+# define WIDTH 1200
+# define HEIGHT 1000
 
-# define KEY_ESC 53
-int avg_z;
+typedef enum e_key_code
+{
+	KEY_ESC = 53,
+	UP_ARROW = 126,
+	DOWN_ARROW = 125,
+	LEFT_ARROW = 123,
+	RIGHT_ARROW = 124,
+	COMMAND = 259,
+	PLUS = 24, MINUS = 27,
+	ONE = 18,
+	TWO = 19,
+	THREE = 20,
+	FOUR = 21,
+	FIVE = 22,
+	SIX = 23,
+	HOME = 115,
+	TAB = 48
+}	t_key_code;
 
 typedef enum e_key_mask
 {
-	NO_EVENT = 0L,
-	KEY_PRESS = 1L<<0
-
+	NO_EVENT_MASK = 0L,
+	KEY_PRESS = 1L<<0,
+	KEY_RELEASE = 1L<<0
 }	t_key_mask;
 
 typedef enum e_event
@@ -53,6 +69,29 @@ typedef struct s_img_info
 	int		endian;
 }	t_img_info;
 
+typedef struct s_map_info
+{
+	int				**crd;
+	unsigned int	**color;
+	int				has_color;
+	int				n_col;
+	int				n_row;
+	int				offset;
+	int				central_x;
+	int				central_y;
+	int				alpha;
+	int				beta;
+	int				gamma;
+	int				ortho_flg;
+}	t_map_info;
+
+typedef struct s_fdf_info
+{
+	t_mlx_info	*mlx;
+	t_img_info	*img;
+	t_map_info	*map;
+}	t_fdf_info;
+
 typedef struct s_clr
 {
 	int				i;
@@ -64,15 +103,6 @@ typedef struct s_clr
 	char			*set;
 }	t_clr;
 
-typedef struct s_map_info
-{
-	int				**crd;
-	unsigned int	**color;
-	int				has_color;
-	int				n_col;
-	int				n_row;
-	int				offset;
-}	t_map_info;
 
 typedef struct s_z
 {
@@ -89,6 +119,7 @@ typedef struct s_point
 {
 	int				x;
 	int				y;
+	int				z;
 	unsigned int	color;
 }	t_point;
 
@@ -101,26 +132,34 @@ typedef struct s_params
 	int	discriminant;
 }	t_params;
 
-//init.c
-int				init(int ac, char **av, t_dq *dq);
+//init_fdf.c
+int				init_fdf(int ac, char **av, t_dq *dq);
 //parse_map.c
 int				parse_map(t_dq *dq, t_map_info *map);
-//parse_map2.c
+void			get_central_pos(t_map_info *map);
+//parse_map_utils.c
 int				has_color_value(t_dq *dq);
 unsigned int	cvrt_str_to_color(char *s);
 //display.c
+int				display(t_mlx_info *mlx, t_img_info *img, t_map_info *map);
+int				prt(t_mlx_info *mlx, t_img_info *img, t_map_info *map);
+//display_utils.c
 int				create_argb(int a, int r, int g, int b);
 void			my_mlx_pixel_put(t_img_info *img, int x, int y, int color);
-int				display(t_mlx_info *mlx, t_img_info *img, t_map_info *map);
-//init_draw.c
+void			get_center(t_img_info *img, t_map_info *map);
+//init_point.c
 t_params		init_params(t_point *p1, t_point *p2);
 t_point			init_point(t_map_info *map, int x, int y);
 //draw.c
 int				draw(t_img_info *img, t_map_info *map);
+//event_bonus.c
+int				click_on_close(t_fdf_info *fdf);
+int				key_event_hook(int keycode, t_fdf_info *fdf);
 //malloc.c
 void			free_tab(char **tab);
 int				free_all(char **tab, t_dq *dq);
 int				malloc_map_crd(t_dq *dq, t_map_info *map);
 int				calloc_map_color(t_dq *dq, t_map_info *map);
-
+//rotation.c
+int				rotate(t_point *p, t_map_info *map);
 #endif

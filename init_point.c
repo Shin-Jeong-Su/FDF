@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_draw.c                                        :+:      :+:    :+:   */
+/*   init_point.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:42:30 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/20 17:43:38 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/26 11:55:58 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "fdf.h"
 
 t_params	init_params(t_point *p1, t_point *p2)
 {
-	t_params params;
+	t_params	params;
 
 	params.dy = (p2->y) - (p1->y);
 	params.dx = (p2->x) - (p1->x);
@@ -37,18 +36,27 @@ t_params	init_params(t_point *p1, t_point *p2)
 t_point	init_point(t_map_info *map, int x, int y)
 {
 	t_point		p;
-	int			z;
+	int			tmp_x;
+	int			tmp_y;
 
 	if (map->has_color == FALSE)
-		p.color = create_argb(0,255,255,255);
+		p.color = create_argb(0, 255, 255, 255);
 	else if (map->color[y][x] == 0)
-		p.color = create_argb(0,255,255,255);
+		p.color = create_argb(0, 255, 255, 255);
 	else
 		p.color = map->color[y][x];
-	z = map->crd[y][x] * map->offset;
-	x = x*map->offset;
-	y = y*map->offset;
-	p.x = x*cos(M_PI/6) - y*cos(M_PI/6) + WIDTH/2 - (map->n_col/2 *cos(M_PI/6) - map->n_row/2*cos(M_PI/6));
-	p.y = x*sin(M_PI/6) + y*sin(M_PI/6) - z + HEIGHT/2 - (map->n_col/2*sin(M_PI/6) + map->n_row/2*sin(M_PI/6) - avg_z);
+	p.z = map->crd[y][x] * map->offset / 5;
+	p.x = x * map->offset;
+	p.y = y * map->offset;
+	rotate(&p, map);
+	tmp_x = p.x;
+	tmp_y = p.y;
+	if (map->ortho_flg % 4 == 0)
+	{
+		p.x = (tmp_x * cos(M_PI / 6)) - (tmp_y * cos(M_PI / 6));
+		p.y = (tmp_x * sin(M_PI / 6)) + (tmp_y * sin(M_PI / 6)) - p.z;
+	}
+	p.x += (WIDTH / 2) - map->central_x;
+	p.y += (HEIGHT / 2) - map->central_y;
 	return (p);
 }

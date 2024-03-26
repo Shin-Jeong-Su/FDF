@@ -6,7 +6,7 @@
 /*   By: jeshin <jeshin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:36:40 by jeshin            #+#    #+#             */
-/*   Updated: 2024/03/20 11:50:41 by jeshin           ###   ########.fr       */
+/*   Updated: 2024/03/22 12:22:18 by jeshin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,17 @@ int	calloc_map_color(t_dq *dq, t_map_info *map)
 	i = -1;
 	while (++i < map->n_row)
 	{
-		 map->color[i] = (unsigned int *)malloc(sizeof(unsigned int) * map->n_col);
-		 if (map->color[i] == 0)
-		 {
+		map->color[i] = (unsigned int *)malloc(sizeof(int) * map->n_col);
+		if (map->color[i] == 0)
+		{
 			j = -1;
 			while (++j < i - 1)
 				free(map->color[j]);
 			clear_dq(dq);
 			free(map->color);
 			return (1);
-		 }
-		 ft_bzero(map->color[i], map->n_col * sizeof(unsigned int));
+		}
+		ft_bzero(map->color[i], map->n_col * sizeof(unsigned int));
 	}
 	return (EXIT_SUCCESS);
 }
